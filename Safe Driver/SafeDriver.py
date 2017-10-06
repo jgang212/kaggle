@@ -139,7 +139,7 @@ driver_df_copy["ps_car_09_cat"] = driver_df_copy["ps_car_09_cat"].fillna(2)
 test_df_copy["ps_car_09_cat"] = test_df_copy["ps_car_09_cat"].fillna(2)
 
 # drop ps_car_03_cat and ps_car_05_cat because it has too many missing values
-driver_df_copy = driver_df_copy.drop(['ps_car_03_cat','ps_car_05_cat'], axis=1)
+driver_df_copy = driver_df_copy.drop(['id','ps_car_03_cat','ps_car_05_cat'], axis=1)
 test_df_copy = test_df_copy.drop(['ps_car_03_cat','ps_car_05_cat'], axis=1)
 
 driver_df = driver_df_copy.copy()
@@ -242,9 +242,9 @@ for varName in [col for col in driver_df.columns if ('_bin' not in col) and ('_c
 
 # define training and testing sets
 
-X_train = driver_df.drop("target",axis=1)
+X_train = driver_df.drop(["target"],axis=1)
 Y_train = driver_df["target"]
-X_test  = test_df.copy()
+X_test  = test_df.drop("id",axis=1).copy()
 
 # Logistic Regression
 
@@ -304,4 +304,4 @@ coeff_df
 
 submission = pd.DataFrame({"id": test_df["id"], "target": Y_pred})
     
-submission.to_csv("result4.csv", header = ['id','target'], index = False, quoting = csv.QUOTE_NONE, quotechar = '')
+submission.to_csv("result5.csv", header = ['id','target'], index = False, quoting = csv.QUOTE_NONE, quotechar = '')

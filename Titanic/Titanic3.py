@@ -10,6 +10,7 @@ Created on Thu Oct  5 10:30:53 2017
 import pandas as pd
 from pandas import Series,DataFrame
 import csv
+from os import chdir
 
 # numpy, matplotlib, seaborn
 import numpy as np
@@ -28,6 +29,8 @@ from sklearn.naive_bayes import GaussianNB
 #################################################################
 
 # get titanic & test csv files as a DataFrame
+chdir('E:\Jack Gang\Kaggle\Titanic')
+
 titanic_df = pd.read_csv("train.csv")
 test_df    = pd.read_csv("test.csv")
 
